@@ -9,18 +9,30 @@
   <body style="margin: 0; padding: 0">
     <iframe
       id="ev-pathways-iframe"
-      src="."
       style="width: 100svw; height: 100svh"
       frameborder="0"
     ></iframe>
     <script>
-      fetch("./test-data.json")
-        .then((response) => response.json())
-        .then((data) => {
-          const iframe = document.getElementById("ev-pathways-iframe");
-          iframe.onload = () =>
-            iframe.contentWindow.postMessage({ target: "ev-pathways", data });
-        });
+      const iframe = document.getElementById("ev-pathways-iframe");
+      const dataPromise = fetch("./test-data.json").then((response) =>
+        response.json()
+      );
+
+      iframe.addEventListener(
+        "load",
+        async () => {
+          const data = await dataPromise;
+          const message = { target: "ev-pathways", data };
+          const targetOrigin = window.location.origin;
+
+          [0, 50, 250, 1000].forEach((delay) => {
+            window.setTimeout(() => {
+              iframe.contentWindow.postMessage(message, targetOrigin);
+            }, delay);
+          });
+        },
+      );
+      iframe.src = ".";
     </script>
   </body>
 </html>
