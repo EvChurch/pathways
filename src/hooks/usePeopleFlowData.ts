@@ -38,7 +38,7 @@ type PeopleFlowData = z.infer<typeof peopleFlowDataSchema>;
 
 const messageEventDataSchema = z.object({
   target: z.literal("ev-pathways"),
-  data: z.unknown(),
+  data: z.unknown().optional(),
 });
 
 export function usePeopleFlowData(campusFilter?: string[]): {
