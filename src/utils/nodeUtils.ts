@@ -3,7 +3,7 @@ import type { ConnectionStatus, Survey } from "../hooks/usePeopleFlowData";
 
 // Create nodes from connection status data
 export const createNodesFromStatuses = (
-  statuses: Record<string, ConnectionStatus>,
+  statuses: Record<string, ConnectionStatus | null>,
   surveys: Survey[] = []
 ): Node[] => {
   // Filter out test statuses
@@ -12,6 +12,7 @@ export const createNodesFromStatuses = (
   Object.entries(statuses).forEach(([statusId, status]) => {
     // Check if this is actually a ConnectionStatus object with a name property
     if (
+      status === null ||
       typeof status !== "object" ||
       !("name" in status) ||
       typeof status.name !== "string"
