@@ -31,7 +31,7 @@ export const updateNodeDimensions = (
   height: number
 ) => {
   const existing = actualNodeDimensions.get(nodeId);
-  if (!existing || existing.width !== width || existing.height !== height) {
+  if (existing?.width !== width || existing.height !== height) {
     actualNodeDimensions.set(nodeId, { width, height });
     // Notify that dimensions have changed for this specific node
     if (onDimensionsChange) {
