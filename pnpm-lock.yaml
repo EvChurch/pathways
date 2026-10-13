@@ -25,7 +25,7 @@ importers:
         version: 11.11.4(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       zod:
         specifier: ^4.0.17
-        version: 4.6.5
+        version: 4.6.7
     devDependencies:
       '@eslint/js':
         specifier: ^9.29.0
@@ -1679,8 +1679,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@4.6.5:
-    resolution: {integrity: sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==}
+  zod@4.6.7:
+    resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
 
   zustand@4.5.7:
     resolution: {integrity: sha512-CHOUy7mu3lbD6o6LJLfllpjkzhHXSBlX8B9+qPddUsIfeF5S/UZ5q0kmCsnRqT1UHFQZchNFDDzMbQsuesHWlw==}
@@ -1932,7 +1932,7 @@ snapshots:
       '@eslint-react/eff': 1.53.1
       '@typescript-eslint/utils': 8.71.1(eslint@9.39.5(jiti@1.21.7))(typescript@5.9.3)
       ts-pattern: 5.9.0
-      zod: 4.6.5
+      zod: 4.6.7
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -1944,7 +1944,7 @@ snapshots:
       '@eslint-react/kit': 1.53.1(eslint@9.39.5(jiti@1.21.7))(typescript@5.9.3)
       '@typescript-eslint/utils': 8.71.1(eslint@9.39.5(jiti@1.21.7))(typescript@5.9.3)
       ts-pattern: 5.9.0
-      zod: 4.6.5
+      zod: 4.6.7
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -3349,7 +3349,7 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@4.6.5: {}
+  zod@4.6.7: {}
 
   zustand@4.5.7(@types/react@19.3.0)(react@19.3.0):
     dependencies:
