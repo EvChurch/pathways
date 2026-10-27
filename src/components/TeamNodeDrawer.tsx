@@ -2,27 +2,13 @@ import { usePathway } from "../hooks/usePathway";
 import { deselectTeamNode } from "../contexts/pathwayActions";
 import PeopleList from "./PeopleList";
 import { PeopleFilter } from "./PeopleList";
-import { useState, useMemo } from "react";
-import type { Person } from "../hooks/usePeopleFlowData";
 
 function TeamNodeDrawer() {
   const { state, dispatch } = usePathway();
   const { selectedTeamNode } = state;
-  const [filteredPeople, setFilteredPeople] = useState<Person[]>([]);
 
   const handleClose = () => {
     dispatch(deselectTeamNode());
-  };
-
-  // Initialize filtered people when selectedTeamNode changes
-  useMemo(() => {
-    if (selectedTeamNode) {
-      setFilteredPeople(selectedTeamNode.data.people);
-    }
-  }, [selectedTeamNode]);
-
-  const handleFilterChange = (newFilteredPeople: Person[]) => {
-    setFilteredPeople(newFilteredPeople);
   };
 
   return (
@@ -70,27 +56,24 @@ function TeamNodeDrawer() {
                 </p>
               )}
 
-              {/* Sticky Filter - sticks to top when scrolled */}
-              <div className="sticky top-0 bg-white z-10 pt-4 -mx-4 px-4 border-b border-gray-100">
-                <PeopleFilter
-                  key={selectedTeamNode.id}
-                  people={selectedTeamNode.data.people}
-                  onFilterChange={handleFilterChange}
-                />
-              </div>
-
-              {/* People List */}
-              <div>
-                <PeopleList
-                  people={filteredPeople}
-                  surveys={[]}
-                  label={selectedTeamNode.data.label}
-                  hasActiveFilters={
-                    filteredPeople.length !==
-                    selectedTeamNode.data.people.length
-                  }
-                />
-              </div>
+              <PeopleFilter
+                key={selectedTeamNode.id}
+                people={selectedTeamNode.data.people}
+              >
+                {(filteredPeople) => (
+                  <div>
+                    <PeopleList
+                      people={filteredPeople}
+                      surveys={[]}
+                      label={selectedTeamNode.data.label}
+                      hasActiveFilters={
+                        filteredPeople.length !==
+                        selectedTeamNode.data.people.length
+                      }
+                    />
+                  </div>
+                )}
+              </PeopleFilter>
             </>
           ) : (
             <div className="flex items-center justify-center h-full text-gray-500">
