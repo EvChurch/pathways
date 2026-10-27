@@ -1,12 +1,12 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import type { Person } from "../../hooks/usePeopleFlowData";
 
 interface PeopleFilterProps {
   people: Person[];
-  onFilterChange: (filteredPeople: Person[]) => void;
+  children: (filteredPeople: Person[]) => ReactNode;
 }
 
-function PeopleFilter({ people, onFilterChange }: PeopleFilterProps) {
+function PeopleFilter({ people, children }: PeopleFilterProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [showOnlyCG, setShowOnlyCG] = useState(false);
   const [showOnlyServing, setShowOnlyServing] = useState(false);
@@ -49,15 +49,10 @@ function PeopleFilter({ people, onFilterChange }: PeopleFilterProps) {
     excludeServing,
   ]);
 
-  // Update parent component when filters change
-  useMemo(() => {
-    onFilterChange(filteredPeople);
-  }, [filteredPeople, onFilterChange]);
-
   const cgCount = people.filter((p) => p.cgGroup).length;
   const servingCount = people.filter((p) => p.isServing).length;
 
-  return (
+  const filterControls = (
     <div className="mb-4 space-y-3">
       {/* Search Box */}
       <div className="relative">
@@ -178,6 +173,15 @@ function PeopleFilter({ people, onFilterChange }: PeopleFilterProps) {
         Showing {filteredPeople.length} of {people.length} people
       </div>
     </div>
+  );
+
+  return (
+    <>
+      <div className="sticky top-0 bg-white z-10 pt-4 -mx-4 px-4 border-b border-gray-100">
+        {filterControls}
+      </div>
+      {children(filteredPeople)}
+    </>
   );
 }
 
