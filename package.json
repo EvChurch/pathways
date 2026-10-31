@@ -41,7 +41,7 @@
   },
   "pnpm": {
     "overrides": {
-      "rollup": "4.67.2"
+      "rollup": "4.67.3"
     }
   }
 }
