@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "npm ci && npm install @rollup/rollup-linux-x64-gnu@4.13.0 && npm run build"
+  command = "pnpm install --frozen-lockfile && pnpm run build"
 
 [[redirects]]
   from = "/*"
@@ -8,5 +8,5 @@
   status = 200
 
 [build.environment]
-  NODE_VERSION = "22.23.4"
-  NPM_FLAGS = "--legacy-peer-deps" 
+  NODE_VERSION = "22.23.5"
+  PNPM_FLAGS = "--frozen-lockfile"

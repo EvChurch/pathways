@@ -19,19 +19,22 @@ This project uses the following technologies:
 
 ## Getting Started
 
+Use Node.js 26.13.1 from `.nvmrc` and the declared `pnpm@12.18.0`.
+Node 22.23.5+, 24.22.3+ and 26.13.1+ are supported within their respective majors.
+
 1. Install dependencies:
    ```bash
-   npm install
+   pnpm install --frozen-lockfile
    ```
 
 2. Start the development server:
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 3. Build for production:
    ```bash
-   npm run build
+   pnpm run build
    ```
 
 ## GitHub Pages Deployment
@@ -50,8 +53,15 @@ The app will be available at: `https://evchurch.github.io/pathways/`
 
 ## Behavioral tests
 
-Run `pnpm test` on Node 22 (see `.nvmrc`). The Node test runner loads the
+Run `pnpm test` on the Node version in `.nvmrc`. The Node test runner loads the
 TypeScript node helper through the existing Vite dependency. Tests use synthetic
 in-memory statuses, people and surveys. The loader opens no HTTP/WebSocket
 listener and closes after the suite; no Rock/API calls are made. A separate
 read-only workflow runs these tests for pull requests and pushes to `main`.
+
+## Netlify build
+
+Netlify uses Node.js 22.23.5 and the declared pnpm version. Both automatic
+dependency installation and the build command use the frozen pnpm lockfile;
+the build publishes the static `dist` directory. Vite uses its locked Rolldown
+binding, so no separate Rollup binary installation is needed.
